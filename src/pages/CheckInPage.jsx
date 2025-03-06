@@ -30,8 +30,8 @@ const CheckInPage = () => {
                     return;
                 }
 
-                // Using the correct endpoint to fetch a single booking by ID
-                const response = await axios.get(`${API_URL}/api/checkin/booking/${bookingId}`, {
+                // FIX: Remove the duplicate /api/ in the URL and ensure the bookingId parameter is correct
+                const response = await axios.get(`${API_URL}/checkin/booking/${bookingId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -135,8 +135,9 @@ const CheckInPage = () => {
                 return;
             }
 
+            // FIX: Also update the check-in submission API URL to remove duplicate /api/
             await axios.post(
-                `${API_URL}/api/checkin/booking/${bookingId}`,
+                `${API_URL}/checkin/booking/${bookingId}`,
                 {
                     guests: guests.map(g => ({
                         name: g.name.trim(),
